@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 import static org.junit.jupiter.api.Assertions.*;
 class FizzBuzzTest {
   private static final String LINE_BREAK = System.getProperty("line.separator");
@@ -20,7 +23,7 @@ class FizzBuzzTest {
     System.setOut(new PrintStream(outputStreamCaptor));
   }
   @Test
-  public void countToFifteen() {
+  void countToFifteen() {
     //GIVEN
     FizzBuzz fizzBuzz = new FizzBuzz();
 
@@ -28,12 +31,12 @@ class FizzBuzzTest {
     fizzBuzz.execute(15);
 
     //THEN
-    String lineSystemOutPrintln = outputStreamCaptor.toString();
-    assertEquals(oneToFifteen(), lineSystemOutPrintln);
+    String[] lineSystemOutPrintln = outputStreamCaptor.toString().split(LINE_BREAK);
+    assertThat(oneToFifteen(), is(lineSystemOutPrintln));
   }
 
   @Test
-  public void countToHundred() {
+  void countToHundred() {
     //GIVEN
     FizzBuzz fizzBuzz = new FizzBuzz();
 
@@ -41,129 +44,26 @@ class FizzBuzzTest {
     fizzBuzz.execute(100);
 
     //THEN
-    String lineSystemOutPrintln = outputStreamCaptor.toString();
-    assertEquals(oneToHundred(), lineSystemOutPrintln);
+    String[] lineSystemOutPrintln = outputStreamCaptor.toString().split(LINE_BREAK);
+    assertThat(oneToHundred(), is(lineSystemOutPrintln));
   }
 
-  private static String oneToFifteen() {
-    return "1" + LINE_BREAK +
-            "2" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "4" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "7" + LINE_BREAK +
-            "8" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "11" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "13" + LINE_BREAK +
-            "14" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK;
+  private static String[] oneToFifteen() {
+    return new String[]{"1", "2", FIZZ, "4", BUZZ, FIZZ, "7", "8", FIZZ, BUZZ,
+            "11", FIZZ, "13", "14", FIZZ_BUZZ};
   }
 
 
-  private static String oneToHundred() {
-    return "1" + LINE_BREAK +
-            "2" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "4" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "7" + LINE_BREAK +
-            "8" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "11" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "13" + LINE_BREAK +
-            "14" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK +
-            "16" + LINE_BREAK +
-            "17" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "19" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "22" + LINE_BREAK +
-            "23" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "26" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "28" + LINE_BREAK +
-            "29" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK +
-            "31" + LINE_BREAK +
-            "32" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "34" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "37" + LINE_BREAK +
-            "38" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "41" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "43" + LINE_BREAK +
-            "44" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK +
-            "46" + LINE_BREAK +
-            "47" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            49 + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "52" + LINE_BREAK +
-            "53" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "56" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "58" + LINE_BREAK +
-            "59" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK +
-            "61" + LINE_BREAK +
-            "62" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "64" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "67" + LINE_BREAK +
-            "68" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "71" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "73" + LINE_BREAK +
-            "74" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK +
-            "76" + LINE_BREAK +
-            "77" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "79" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "82" + LINE_BREAK +
-            "83" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            "86" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "88" + LINE_BREAK +
-            "89" + LINE_BREAK +
-            FIZZ_BUZZ + LINE_BREAK +
-            "91" + LINE_BREAK +
-            "92" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "94" + LINE_BREAK +
-            BUZZ + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            "97" + LINE_BREAK +
-            "98" + LINE_BREAK +
-            FIZZ + LINE_BREAK +
-            BUZZ + LINE_BREAK;
+  private static String[] oneToHundred() {
+    return new String[]{"1", "2", FIZZ, "4", BUZZ, FIZZ, "7", "8", FIZZ, BUZZ,
+            "11", FIZZ, "13", "14", FIZZ_BUZZ, "16", "17", FIZZ, "19", BUZZ,
+            FIZZ, "22", "23", FIZZ, BUZZ, "26", FIZZ, "28", "29", FIZZ_BUZZ,
+            "31", "32", FIZZ, "34", BUZZ, FIZZ, "37", "38", FIZZ, BUZZ,
+            "41", FIZZ, "43", "44", FIZZ_BUZZ, "46", "47", FIZZ, "49", BUZZ,
+            FIZZ, "52", "53", FIZZ, BUZZ, "56", FIZZ, "58", "59", FIZZ_BUZZ,
+            "61", "62", FIZZ, "64", BUZZ, FIZZ, "67", "68", FIZZ, BUZZ,
+            "71", FIZZ, "73", "74", FIZZ_BUZZ, "76", "77", FIZZ, "79", BUZZ,
+            FIZZ, "82", "83", FIZZ, BUZZ, "86", FIZZ, "88", "89", FIZZ_BUZZ,
+            "91", "92", FIZZ, "94", BUZZ, FIZZ, "97", "98", FIZZ, BUZZ};
   }
 }
