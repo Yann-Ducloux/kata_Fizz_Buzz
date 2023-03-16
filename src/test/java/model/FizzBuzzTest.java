@@ -48,6 +48,41 @@ class FizzBuzzTest {
     assertThat(oneToHundred(), is(lineSystemOutPrintln));
   }
 
+  @Test
+  void multipleOfThree() {
+    //GIVEN
+    FizzBuzz fizzBuzz = new FizzBuzz();
+
+    //WHEN
+    String result = fizzBuzz.convert(2379423);
+
+    //THEN
+    assertThat(FIZZ, is(result));
+  }
+
+  @Test
+  void multipleOfFive() {
+    //GIVEN
+    FizzBuzz fizzBuzz = new FizzBuzz();
+
+    //WHEN
+    String result = fizzBuzz.convert(5795345);
+
+    //THEN
+    assertThat(BUZZ, is(result));
+  }
+
+  @Test
+  void multipleOfThreeAndFive() {
+    //GIVEN
+    FizzBuzz fizzBuzz = new FizzBuzz();
+
+    //WHEN
+    String result = fizzBuzz.convert(324942735);
+
+    //THEN
+    assertThat(FIZZ_BUZZ, is(result));
+  }
   private static String[] oneToFifteen() {
     return new String[]{"1", "2", FIZZ, "4", BUZZ, FIZZ, "7", "8", FIZZ, BUZZ,
             "11", FIZZ, "13", "14", FIZZ_BUZZ};

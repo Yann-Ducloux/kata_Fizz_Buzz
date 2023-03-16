@@ -9,18 +9,21 @@ public class FizzBuzz {
     private static final String BUZZ = "Buzz";
     private static final String FIZZ_BUZZ = "FizzBuzz";
     public void execute(Integer count) {
-        IntStream iterate = IntStream.iterate(1, i -> i+1).limit(count);
-        iterate.forEach(this::print);
+        IntStream.rangeClosed(1, count).mapToObj(this::convert).forEach(this::print);
     }
-    private void print(Integer count) {
+
+    private void print(String result) {
+        System.out.println(result);
+    }
+    public String convert(Integer count) {
         if(multipleOf(count, MULTIPLIER_THREE) && multipleOf(count, MULTIPLIER_FIVE)) {
-            System.out.println(FIZZ_BUZZ);
+            return FIZZ_BUZZ;
         } else if(multipleOf(count, MULTIPLIER_THREE)) {
-            System.out.println(FIZZ);
+            return FIZZ;
         } else if(multipleOf(count, MULTIPLIER_FIVE)) {
-            System.out.println(BUZZ);
+            return BUZZ;
         } else {
-            System.out.println(count);
+            return count.toString();
         }
     }
     private boolean multipleOf(int number, int multiplier) {
